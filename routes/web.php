@@ -17,18 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home',function () {
-    return view('home');
-});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm');
+Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::view('/admin', 'admin');

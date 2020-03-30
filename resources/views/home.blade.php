@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="app" class="bg-green-800">
-wwewe
+    <div id="app" class="bg-gray-900 text-white py-4 px-6">
+        Khatab haha
     </div>
 @endsection
 

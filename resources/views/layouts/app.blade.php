@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,8 +20,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     @yield('header')
+    <style>
+        .dropdown:hover .dropdown-menu {
+  display: block;
+}
+    </style>
 </head>
-<body>
+<body class="bg-gray-100">
     <div id="app">
         @include('layouts._nav')
 
@@ -29,5 +34,12 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('script')
+
+    
+    <p class="text-center text-gray-500 text-xs">
+        &copy;2020 Acme Corp. All rights reserved.
+      </p>
 </body>
 </html>

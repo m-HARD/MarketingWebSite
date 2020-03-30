@@ -28,4 +28,4 @@ Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
 Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::post('/register/admin', 'Auth\RegisterController@createAdmin');
 
-Route::view('/admin', 'admin');
+Route::view('/admin', 'admin')->middleware('auth:admin');

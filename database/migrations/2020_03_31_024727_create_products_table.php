@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
+     *symfony/http-foundation
      * @return void
      */
     public function down()

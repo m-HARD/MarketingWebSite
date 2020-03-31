@@ -4,12 +4,13 @@
 
 <div class="flex justify-center mt-6">
     <div class="w-1/3 ">
-        <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+        <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('admin.login.submit') }}" aria-label="{{ __('Login') }}">
             @csrf
             <div class="text-center text-xl font-bold mb-4">
-                {{ __('Login') }}
+                {{ __('Admin Login') }}
             </div>
 
+                    
           <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                 {{ __('E-Mail Address') }}

@@ -48,6 +48,7 @@ footer{
     font-size: 14;
 }
 </style>
+
 @endsection
 
 @section('content')

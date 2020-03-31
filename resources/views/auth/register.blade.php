@@ -3,11 +3,7 @@
 @section('content')
 <div class="flex justify-center mt-6">
     <div class="w-1/3 ">
-        @isset($url)
-        <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action='{{ url("register/$url") }}' aria-label="{{ __('Register') }}">
-        @else
         <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-        @endisset
         @csrf
                     
             <div class="text-center text-xl font-bold mb-4">{{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>

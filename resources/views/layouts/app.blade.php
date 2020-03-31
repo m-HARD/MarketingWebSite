@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,27 +17,31 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('icomoon/style.css') }}" rel="stylesheet">
     @yield('header')
+
     <style>
-        .dropdown:hover .dropdown-menu {
-  display: block;
-}
+    
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
     </style>
+
 </head>
-<body class="bg-gray-100">
+<body  class="bg-gray-100">
     <div id="app">
         @include('layouts._nav')
-
+        
         <main class="py-4">
             @yield('content')
         </main>
+        <p class="text-center text-gray-500 text-xs py-6">
+            &copy;2020 Designed by <span class="text-gray-700">baka_team</span>. All rights reserved.
+        </p>
     </div>
 
     @yield('script')
 
-    
-    <p class="text-center text-gray-500 text-xs">
-        &copy;2020 Acme Corp. All rights reserved.
-      </p>
+    <script src="{{ asset('js/app.js') }}" async defer></script>
 </body>
 </html>

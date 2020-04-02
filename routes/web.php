@@ -28,3 +28,5 @@ Route::prefix('admin')->group(function() {
     Route::post('logout/', 'Auth\AdminLoginController@logout')->name('admin.logout');
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
+
+Route::patch('/productinstock/{ProductId}', 'ProductController@updateInStock');

@@ -73,6 +73,28 @@ class ProductController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function updateInStock(Request $request, $productId)
+    {
+        $product = Product::findOrFail($productId);
+
+        $this->validate($request,[
+            'itemInStock' => 'required|numeric'
+        ]);
+
+        $product->inStock = $request->itemInStock;
+        $product->save();
+
+
+        return dd($product);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Product  $product

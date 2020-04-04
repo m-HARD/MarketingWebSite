@@ -19,7 +19,8 @@ require('./bootstrap');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('products', require('./components/ProductsComponents.vue').default);
+Vue.component('products', require('./components/Products.vue').default);
+Vue.component('product-edit', require('./components/dashbord/products/Edit.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

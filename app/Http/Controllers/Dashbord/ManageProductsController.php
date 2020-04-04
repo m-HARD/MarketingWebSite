@@ -23,18 +23,18 @@ class ManageProductsController extends Controller
     public function update(Request $request, Product $product)
     {
         $this->validate($request, [
-            'product.name' => 'required|max:30',
-            'product.description' => 'required|max:200',
+            'product.name' => 'required|max:255',
+            'product.description' => 'required|max:255',
             'product.price' => 'required|numeric',
-            'product.inStock' => 'required|numeric'
+            'product.stock' => 'required|numeric'
         ]);
 
         $product->name = $request->input('product.name');
         $product->description = $request->input('product.description');
         $product->price = $request->input('product.price');
-        $product->inStock = $request->input('product.inStock');
+        $product->stock = $request->input('product.stock');
         $product->save();
 
-        dd($product);
+        return response(201);
     }
 }

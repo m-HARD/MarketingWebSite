@@ -2076,21 +2076,17 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     checkOut: function checkOut() {
-      var _this = this;
-
       if (confirm("Purched your products?")) {
         this.cart.items.forEach(function (item) {
-          item.product.inStock == item.quantity;
-          _this.errors = {};
-          axios.patch('/productinstock/' + item.product.id, {
-            itemInStock: item.product.inStock
-          }).then(function (response) {
-            console.log('Message sent!');
-          })["catch"](function (error) {
-            if (error.response.status === 422) {
-              _this.errors = error.response.data.errors || {};
-            }
-          });
+          item.product.inStock == item.quantity; // make it model hock
+          // this.errors = {};
+          // axios.patch('/productinstock/' + item.product.id,
+          //  {itemInStock : item.product.inStock}).then(response => {
+          //     console.log('Message sent!');
+          // }).catch(error => {
+          //     if (error.response.status === 422) {
+          //     this.errors = error.response.data.errors || {};
+          // }});
         });
         this.cart.items = [];
         alert("Thanks for using our Site , Enjoy your products");
@@ -50114,8 +50110,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-Vue.component('products', __webpack_require__(/*! ./components/ProductsComponents.vue */ "./resources/js/components/ProductsComponents.vue")["default"]); // Vue.component('view-edit-product', require('./components/ViewEditProduct.vue').default);
-
+Vue.component('products', __webpack_require__(/*! ./components/ProductsComponents.vue */ "./resources/js/components/ProductsComponents.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -2175,12 +2175,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['product'],
+  props: ['product', 'editing'],
   data: function data() {
     return {
-      editing: false,
       errors: {}
     };
   },
@@ -2211,15 +2220,14 @@ __webpack_require__.r(__webpack_exports__);
         product: this.product
       }).then(function (response) {
         console.log("Product Edit Saved Successfully :)");
+        _this.editing = false;
       })["catch"](function (error) {
         if (error.response.status === 422) {
           _this.errors = error.response.data.errors || {};
         }
       });
-      this.editing = false;
     }
-  },
-  computed: {}
+  }
 });
 
 /***/ }),
@@ -55683,6 +55691,8 @@ var render = function() {
                         expression: "product.name"
                       }
                     ],
+                    staticClass:
+                      "myinput focus:outline-none focus:shadow-outline",
                     attrs: { type: "text", name: "name", id: "name" },
                     domProps: { value: _vm.product.name },
                     on: {
@@ -55714,6 +55724,8 @@ var render = function() {
                         expression: "product.description"
                       }
                     ],
+                    staticClass:
+                      "myinput focus:outline-none focus:shadow-outline",
                     attrs: {
                       name: "description",
                       id: "description",
@@ -55754,6 +55766,8 @@ var render = function() {
                         expression: "product.price"
                       }
                     ],
+                    staticClass:
+                      "myinput focus:outline-none focus:shadow-outline",
                     attrs: { type: "number", name: "price", id: "price" },
                     domProps: { value: _vm.product.price },
                     on: {
@@ -55783,6 +55797,8 @@ var render = function() {
                         expression: "product.inStock"
                       }
                     ],
+                    staticClass:
+                      "myinput focus:outline-none focus:shadow-outline",
                     attrs: { type: "number", name: "inStock", id: "inStock" },
                     domProps: { value: _vm.product.inStock },
                     on: {
@@ -55841,11 +55857,10 @@ var render = function() {
                 ])
               : _c("div", [
                   _c(
-                    "a",
+                    "span",
                     {
                       staticClass:
                         "px-3 py-2 bg-green-600 hover:bg-green-800 rounded-md text-gray-300",
-                      attrs: { href: "#" },
                       on: {
                         click: function($event) {
                           return _vm.updateProduct()

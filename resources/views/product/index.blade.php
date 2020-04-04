@@ -23,7 +23,7 @@
             <div class="py-4 text-center">{{ $product->inStock }}</div>
             <div class="col-end-13 col-span-3 py-4">
                 <a href="/product/{{ $product->id }}" class="px-3 py-1 rounded-md bg-blue-600 hover:bg-blue-800">View</a>
-                <a href="#" class="px-3 py-1 rounded-md bg-green-600 hover:bg-green-800">Edit</a>
+                <a href="/product/{{ $product->id }}/edit" class="px-3 py-1 rounded-md bg-green-600 hover:bg-green-800">Edit</a>
                 <a href="#" class="px-3 py-1 rounded-md bg-red-600 hover:bg-red-800">Del</a>
                 <span class="ml-5">{{ $product->id }}</span>
             </div>

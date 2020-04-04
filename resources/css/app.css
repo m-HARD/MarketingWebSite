@@ -1,5 +1,8 @@
 @tailwind base;
 
 @tailwind components;
+.myinput{
+    @apply bg-white border border-gray-500 rounded-lg py-1 px-4 appearance-none leading-normal;
+}
 
 @tailwind utilities;

@@ -623,6 +623,21 @@ video {
   }
 }
 
+.myinput{
+  background-color: #fff;
+  border-width: 1px;
+  border-color: #a0aec0;
+  border-radius: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  line-height: 1.5;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

@@ -58,7 +58,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view("product.viewEdit")->withProduct($product);
+        return view("product.viewEdit",["product" => $product , "editing" => "false"]);
     }
 
     /**
@@ -69,7 +69,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view("product.viewEdit",["product" => $product , "editing" => "true"]);
     }
 
     /**

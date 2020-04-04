@@ -31,6 +31,10 @@
                       </button>
                       <ul class="dropdown-menu absolute hidden text-gray-700 pt-1 right-0 w-full">
                         <li class="">
+                            <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{{ route('product.index') }}">
+                                Product
+                            </a>
+                            <hr>
                             <a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

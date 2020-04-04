@@ -28,6 +28,7 @@
         "webpack": "^4.42.1"
     },
     "dependencies": {
+        "moment": "^2.24.0",
         "tailwindcss": "^1.2.0"
     }
 }

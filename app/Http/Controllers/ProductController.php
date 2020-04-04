@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     *
+     *public function __construct()
+     *{
+     *   $this->middleware('auth:admin');
+     *}*/
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view("product.index")->withProducts($products);
     }
 
     /**
@@ -46,7 +58,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view("product.viewEdit")->withProduct($product);
     }
 
     /**
@@ -70,28 +82,6 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function updateInStock(Request $request, $productId)
-    {
-        $product = Product::findOrFail($productId);
-
-        $this->validate($request,[
-            'itemInStock' => 'required|numeric'
-        ]);
-
-        $product->inStock = $request->itemInStock;
-        $product->save();
-
-
-        return dd($product);
     }
 
     /**

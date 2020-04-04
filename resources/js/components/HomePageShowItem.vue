@@ -1,18 +1,18 @@
 <template>
      <div id="app">
          
-        <div class="">
+        <div class="mx-20">
             <br>
-            <nav id="top-navigation" class="well well-sm flex flex-row align-center">
+            <nav id="top-navigation" class="mb-2 flex justify-between">
                 <a href="#" @click.prevent="isCart = false"> <i class=" icon icon-home f291"></i> <strong>Mile High Inc.</strong></a>
 
                 <div class="text-right pull-right cart-info">
                     <span class="stats lead"> <i class="icon icon-shopping_cart"></i>{{cart.items.length}}</span>
-                    <button class="btn btn-primary" @click="isCart = true">View Cart</button>
+                    <button class="px-3 py-2 bg-blue-600 rounded-md text-white" @click="isCart = true">View Cart</button>
                 </div>
             </nav>
 
-            <div id="products" class="mx-20 flex flex-wrap" v-if="!isCart">
+            <div id="products" class="flex flex-wrap" v-if="!isCart">
                 <div :key="product.id" v-for="product in products" class="w-full sm:w-1/2 lg:w-1/3 px-0 sm:px-4 mb-6">
                     <div class="bg-white border rounded-lg overflow-hidden ">
                         <div class="relative bg-gray-300 pb-2/3">
@@ -28,7 +28,7 @@
                                 <div class="text-base text-gray-600 font-semibold flex items-baseline" 
                                     :class="{'text-yellow-500':product.inStock < 10 , 'text-green-900':product.inStock === 0}">
                                         {{product.inStock}} in stock
-                                        <button class="bg-green-600 text-white text-xs px-3 py-2 ml-2 rounded-sm"
+                                        <button class="bg-green-600 text-white text-xs px-3 py-2 ml-2 rounded-md"
                                          :disabled="product.inStock === 0"
                                          :class="{'cursor-not-allowed':product.inStock === 0}"
                                          @click="addToCart(product)">
@@ -172,7 +172,7 @@
                     this.errors = {};
                     axios.patch('/productinstock/' + item.product.id,
                      {itemInStock : item.product.inStock}).then(response => {
-                        alert('Message sent!');
+                        console.log('Message sent!');
                     }).catch(error => {
                         if (error.response.status === 422) {
                         this.errors = error.response.data.errors || {};

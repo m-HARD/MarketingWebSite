@@ -20,6 +20,7 @@ require('./bootstrap');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('home-page-show-item', require('./components/HomePageShowItem.vue').default);
+Vue.component('view-edit-product', require('./components/ViewEditProduct.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

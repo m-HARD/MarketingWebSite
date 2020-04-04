@@ -29,4 +29,6 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
-Route::patch('/productinstock/{ProductId}', 'ProductController@updateInStock');
+Route::patch('/productinstock/{ProductId}', 'ProductQuantityController@updateInStock');
+
+Route::resource('product', 'ProductController');

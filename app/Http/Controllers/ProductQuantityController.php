@@ -25,6 +25,6 @@ class ProductQuantityController extends Controller
         $product->save();
 
 
-        return dd($product);
+        return "done";
     }
 }

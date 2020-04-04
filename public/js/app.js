@@ -2165,12 +2165,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['product'],
   data: function data() {
     return {
-      isCart: false
+      editing: false,
+      errors: {}
     };
   },
   filters: {
@@ -2191,6 +2202,21 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     lastPurchase: function lastPurchase() {
       return this.$options.filters.FormatDate(this.product.updated_at);
+    },
+    updateProduct: function updateProduct() {
+      var _this = this;
+
+      this.errors = {};
+      axios.patch('/product/' + this.product.id, {
+        product: this.product
+      }).then(function (response) {
+        console.log("Product Edit Saved Successfully :)");
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors || {};
+        }
+      });
+      this.editing = false;
     }
   },
   computed: {}
@@ -55637,35 +55663,138 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "py-1 px-5" }, [
             _c("span", { staticClass: "font-bold" }, [_vm._v("ID : ")]),
-            _vm._v("\n            " + _vm._s(_vm.product.id) + "\n        ")
+            _vm._v(
+              "\n                " + _vm._s(_vm.product.id) + "\n            "
+            )
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "py-1 px-5" }, [
             _c("span", { staticClass: "font-bold" }, [_vm._v("Name : ")]),
-            _vm._v("\n             " + _vm._s(_vm.product.name) + "\n        ")
+            _vm._v(" "),
+            _vm.editing == false
+              ? _c("span", [_vm._v(" " + _vm._s(_vm.product.name))])
+              : _c("span", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.name,
+                        expression: "product.name"
+                      }
+                    ],
+                    attrs: { type: "text", name: "name", id: "name" },
+                    domProps: { value: _vm.product.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.product, "name", $event.target.value)
+                      }
+                    }
+                  })
+                ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "py-1 px-5" }, [
-            _c("span", { staticClass: "font-bold" }, [
+          _c("div", { staticClass: "py-1 px-5 flex flex-wrap" }, [
+            _c("span", { staticClass: "font-bold mr-1" }, [
               _vm._v("Description : ")
             ]),
-            _vm._v(
-              "\n             " + _vm._s(_vm.product.description) + "\n        "
-            )
+            _vm._v(" "),
+            _vm.editing == false
+              ? _c("span", [_vm._v(" " + _vm._s(_vm.product.description))])
+              : _c("span", [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.description,
+                        expression: "product.description"
+                      }
+                    ],
+                    attrs: {
+                      name: "description",
+                      id: "description",
+                      cols: "82",
+                      rows: "3"
+                    },
+                    domProps: { value: _vm.product.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.product,
+                          "description",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "py-1 px-5" }, [
             _c("span", { staticClass: "font-bold" }, [_vm._v("Price : ")]),
-            _vm._v(
-              "\n             $" + _vm._s(_vm.product.price) + "\n        "
-            )
+            _vm._v(" "),
+            _vm.editing == false
+              ? _c("span", [
+                  _vm._v(_vm._s(_vm._f("currency")(_vm.product.price)))
+                ])
+              : _c("span", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.price,
+                        expression: "product.price"
+                      }
+                    ],
+                    attrs: { type: "number", name: "price", id: "price" },
+                    domProps: { value: _vm.product.price },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.product, "price", $event.target.value)
+                      }
+                    }
+                  })
+                ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "py-1 px-5" }, [
             _c("span", { staticClass: "font-bold" }, [_vm._v("In Stock : ")]),
-            _vm._v(
-              "\n             " + _vm._s(_vm.product.inStock) + "\n        "
-            )
+            _vm._v(" "),
+            _vm.editing == false
+              ? _c("span", [_vm._v(_vm._s(_vm.product.inStock))])
+              : _c("span", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.inStock,
+                        expression: "product.inStock"
+                      }
+                    ],
+                    attrs: { type: "number", name: "inStock", id: "inStock" },
+                    domProps: { value: _vm.product.inStock },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.product, "inStock", $event.target.value)
+                      }
+                    }
+                  })
+                ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "py-1 px-5" }, [
@@ -55673,17 +55802,74 @@ var render = function() {
               _vm._v("last purchase : ")
             ]),
             _vm._v(
-              "\n             " +
+              "\n                " +
                 _vm._s(
                   _vm.product.updated_at == _vm.product.created_at
                     ? "No purchase yet"
                     : _vm.lastPurchase()
                 ) +
-                "\n        "
+                "\n            "
             )
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "pb-4 px-5 text-right" }, [
+            _vm.editing == false
+              ? _c("div", [
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "px-3 py-2 bg-green-600 hover:bg-green-800 rounded-md text-gray-300 cursor-pointer",
+                      on: {
+                        click: function($event) {
+                          _vm.editing = !_vm.editing
+                        }
+                      }
+                    },
+                    [_vm._v("Edit")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "px-3 py-2 bg-red-600 hover:bg-red-800 rounded-md text-gray-300",
+                      attrs: { href: "#" }
+                    },
+                    [_vm._v("Delete")]
+                  )
+                ])
+              : _c("div", [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "px-3 py-2 bg-green-600 hover:bg-green-800 rounded-md text-gray-300",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          return _vm.updateProduct()
+                        }
+                      }
+                    },
+                    [_vm._v("Update")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "px-3 py-2 bg-gray-500 hover:bg-gray-700 rounded-md text-gray-300 cursor-pointer",
+                      on: {
+                        click: function($event) {
+                          _vm.editing = !_vm.editing
+                        }
+                      }
+                    },
+                    [_vm._v("Cancel")]
+                  )
+                ])
+          ])
         ]
       )
     ])
@@ -55696,32 +55882,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "py-1 px-5 underline" }, [
       _c("a", { attrs: { href: "../product" } }, [_vm._v("Go Back")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pb-4 px-5 text-right" }, [
-      _c(
-        "a",
-        {
-          staticClass:
-            "px-3 py-2 bg-green-600 hover:bg-green-800 rounded-md text-gray-300",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Edit")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "px-3 py-2 bg-red-600 hover:bg-red-800 rounded-md text-gray-300",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Delete")]
-      )
     ])
   }
 ]
@@ -68057,14 +68217,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./resources/js/components/ViewEditProduct.vue ***!
   \*****************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ViewEditProduct_vue_vue_type_template_id_d1ac0ff6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewEditProduct.vue?vue&type=template&id=d1ac0ff6& */ "./resources/js/components/ViewEditProduct.vue?vue&type=template&id=d1ac0ff6&");
 /* harmony import */ var _ViewEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewEditProduct.vue?vue&type=script&lang=js& */ "./resources/js/components/ViewEditProduct.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ViewEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ViewEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -68094,7 +68255,7 @@ component.options.__file = "resources/js/components/ViewEditProduct.vue"
 /*!******************************************************************************!*\
   !*** ./resources/js/components/ViewEditProduct.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

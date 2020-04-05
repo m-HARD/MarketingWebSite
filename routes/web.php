@@ -20,8 +20,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::prefix('admin')->group(function() {
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
@@ -29,6 +27,10 @@ Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
-Route::patch('/productinstock/{ProductId}', 'ProductQuantityController@updateInStock');
+Route::prefix('dashbord')->group(function () {
+    Route::get('/products' , 'Dashbord\ManageProductsController@index');
+    Route::get('/products/{product}', 'Dashbord\ManageProductsController@show');
+    Route::patch('/products/{product}', 'Dashbord\ManageProductsController@update');
+});
 
-Route::resource('product', 'ProductController');
+Route::get('/products' , 'ProductController@index');

@@ -32,9 +32,9 @@
                 </div>
                 <div class="py-1 px-5">
                     <span class="font-bold">In Stock : </span>
-                    <span v-if="editing == false">{{ product.inStock }}</span>
+                    <span v-if="editing == false">{{ product.stock }}</span>
                     <span v-else>
-                        <input type="number" name="inStock" id="inStock" v-model="product.inStock" class="myinput focus:outline-none focus:shadow-outline">
+                        <input type="number" name="stock" id="stock" v-model="product.stock" class="myinput focus:outline-none focus:shadow-outline">
                     </span>
                 </div>
                 <div class="py-1 px-5">
@@ -62,12 +62,12 @@
 <script>
     import moment from 'moment'
     export default {
-        props: ['product','editing'],
+        props: ['product'],
         data() {
             return{
+                editing: false,
                 errors:{}
         }},
-
         filters:{
             FormatDate:(val => {
                 if (val) {
@@ -90,7 +90,7 @@
             },
             updateProduct(){
                 this.errors = {};
-                axios.patch('/product/' + this.product.id,
+                axios.patch('/dashbord/products/' + this.product.id,
                     {product : this.product}).then(response => {
                     console.log("Product Edit Saved Successfully :)");
                     this.editing = false;
@@ -98,6 +98,8 @@
                     if (error.response.status === 422) {
                     this.errors = error.response.data.errors || {};
                 }});
+
+                this.editing = false
             },
         }
     }

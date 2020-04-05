@@ -169,14 +169,15 @@
                 this.cart.items.forEach( (item) => {
                     item.product.inStock == item.quantity;
 
-                    this.errors = {};
-                    axios.patch('/productinstock/' + item.product.id,
-                     {itemInStock : item.product.inStock}).then(response => {
-                        console.log('Message sent!');
-                    }).catch(error => {
-                        if (error.response.status === 422) {
-                        this.errors = error.response.data.errors || {};
-                    }});
+                    // make it model hock
+                    // this.errors = {};
+                    // axios.patch('/productinstock/' + item.product.id,
+                    //  {itemInStock : item.product.inStock}).then(response => {
+                    //     console.log('Message sent!');
+                    // }).catch(error => {
+                    //     if (error.response.status === 422) {
+                    //     this.errors = error.response.data.errors || {};
+                    // }});
                 
                 });
                 this.cart.items = [];

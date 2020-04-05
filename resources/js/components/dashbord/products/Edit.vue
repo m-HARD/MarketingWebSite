@@ -2,7 +2,7 @@
      <div id="app">
         <div class="mx-20 flex justify-center">
             <div class="mb-3 bg-gray-300 rounded-lg overflow-hidden w-2/3">
-                <div class="py-1 px-5 underline"><a href="../product">Go Back</a></div>
+                <div class="py-1 px-5 underline"><a href="../products">Go Back</a></div>
                 <div class="py-4 text-center">IMG</div>
                 <div class="py-1 px-5">
                     <span class="font-bold">ID : </span>

@@ -28,7 +28,7 @@ Route::prefix('admin')->group(function() {
 });
 
 Route::prefix('dashbord')->group(function () {
-    Route::get('/products' , 'Dashbord\ManageProductsController@index');
+    Route::get('/products' , 'Dashbord\ManageProductsController@index')->name('product.index');
     Route::get('/products/{product}', 'Dashbord\ManageProductsController@show');
     Route::patch('/products/{product}', 'Dashbord\ManageProductsController@update');
 });

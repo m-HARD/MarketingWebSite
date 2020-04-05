@@ -26,11 +26,11 @@
                             <div class="flex flex-wrap justify-between items-baseline">
                                 <div class="text-md text-gray-800 font-semibold">{{product.price | currency }} <i class="icon icon-heart-o"></i></div>
                                 <div class="text-base text-gray-600 font-semibold flex items-baseline" 
-                                    :class="{'text-yellow-500':product.inStock < 10 , 'text-green-900':product.inStock === 0}">
-                                        {{product.inStock}} in stock
+                                    :class="{'text-yellow-500':product.stock < 10 , 'text-green-900':product.stock === 0}">
+                                        {{product.stock}} in stock
                                         <button class="bg-green-600 text-white text-xs px-3 py-2 ml-2 rounded-md"
-                                         :disabled="product.inStock === 0"
-                                         :class="{'cursor-not-allowed':product.inStock === 0}"
+                                         :disabled="product.stock === 0"
+                                         :class="{'cursor-not-allowed':product.stock === 0}"
                                          @click="addToCart(product)">
                                             Add to cart
                                         </button>
@@ -60,7 +60,7 @@
                                 <td class="py-4 px-6 border-b">{{ item.product.name }}</td>
                                 <td class="py-4 px-6 border-b">
                                     {{ item.quantity }}
-                                    <button @click="increaseQuantity(item)" :disabled="item.product.inStock == 0" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green-600 hover:bg-green-800" :class="{'cursor-not-allowed':item.product.inStock === 0}">+</button>
+                                    <button @click="increaseQuantity(item)" :disabled="item.product.stock == 0" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green-600 hover:bg-green-800" :class="{'cursor-not-allowed':item.product.stock === 0}">+</button>
                                     <button @click="decreaseQuantity(item)" class="text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-red-600 hover:bg-red-800">-</button>
                                 </td>
                                 <td class="py-4 px-6 border-b text-center">{{ item.quantity * item.product.price | currency }}</td>
@@ -136,7 +136,7 @@
                 quantity:1
             });
             }
-            product.inStock--;
+            product.stock--;
         },
         getCartItem(product){
             for (let i = 0; i < this.cart.items.length; i++) {
@@ -147,11 +147,11 @@
             return null;
         },
         increaseQuantity(item){
-          item.product.inStock--;
+          item.product.stock--;
           item.quantity++;
         },
         decreaseQuantity(item){
-            item.product.inStock++; 
+            item.product.stock++; 
             item.quantity--;
 
             if(item.quantity == 0){
@@ -167,7 +167,7 @@
         checkOut(){
             if(confirm("Purched your products?")){
                 this.cart.items.forEach( (item) => {
-                    item.product.inStock == item.quantity;
+                    item.product.stock == item.quantity;
 
                     // make it model hock
                     // this.errors = {};

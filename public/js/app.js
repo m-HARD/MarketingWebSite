@@ -2045,7 +2045,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
 
-      product.inStock--;
+      product.stock--;
     },
     getCartItem: function getCartItem(product) {
       for (var i = 0; i < this.cart.items.length; i++) {
@@ -2057,11 +2057,11 @@ __webpack_require__.r(__webpack_exports__);
       return null;
     },
     increaseQuantity: function increaseQuantity(item) {
-      item.product.inStock--;
+      item.product.stock--;
       item.quantity++;
     },
     decreaseQuantity: function decreaseQuantity(item) {
-      item.product.inStock++;
+      item.product.stock++;
       item.quantity--;
 
       if (item.quantity == 0) {
@@ -2078,7 +2078,7 @@ __webpack_require__.r(__webpack_exports__);
     checkOut: function checkOut() {
       if (confirm("Purched your products?")) {
         this.cart.items.forEach(function (item) {
-          item.product.inStock == item.quantity; // make it model hock
+          item.product.stock == item.quantity; // make it model hock
           // this.errors = {};
           // axios.patch('/productinstock/' + item.product.id,
           //  {itemInStock : item.product.inStock}).then(response => {
@@ -55323,14 +55323,14 @@ var render = function() {
                                 staticClass:
                                   "text-base text-gray-600 font-semibold flex items-baseline",
                                 class: {
-                                  "text-yellow-500": product.inStock < 10,
-                                  "text-green-900": product.inStock === 0
+                                  "text-yellow-500": product.stock < 10,
+                                  "text-green-900": product.stock === 0
                                 }
                               },
                               [
                                 _vm._v(
                                   "\n                                    " +
-                                    _vm._s(product.inStock) +
+                                    _vm._s(product.stock) +
                                     " in stock\n                                    "
                                 ),
                                 _c(
@@ -55339,10 +55339,9 @@ var render = function() {
                                     staticClass:
                                       "bg-green-600 text-white text-xs px-3 py-2 ml-2 rounded-md",
                                     class: {
-                                      "cursor-not-allowed":
-                                        product.inStock === 0
+                                      "cursor-not-allowed": product.stock === 0
                                     },
-                                    attrs: { disabled: product.inStock === 0 },
+                                    attrs: { disabled: product.stock === 0 },
                                     on: {
                                       click: function($event) {
                                         return _vm.addToCart(product)
@@ -55417,11 +55416,11 @@ var render = function() {
                                                 "text-grey-lighter font-bold py-1 px-3 rounded text-xs bg-green-600 hover:bg-green-800",
                                               class: {
                                                 "cursor-not-allowed":
-                                                  item.product.inStock === 0
+                                                  item.product.stock === 0
                                               },
                                               attrs: {
                                                 disabled:
-                                                  item.product.inStock == 0
+                                                  item.product.stock == 0
                                               },
                                               on: {
                                                 click: function($event) {
@@ -55894,7 +55893,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "py-1 px-5 underline" }, [
-      _c("a", { attrs: { href: "../product" } }, [_vm._v("Go Back")])
+      _c("a", { attrs: { href: "../products" } }, [_vm._v("Go Back")])
     ])
   }
 ]
@@ -68235,15 +68234,16 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-
-/* harmony import */ var _ViewEditProduct_vue_vue_type_template_id_d1ac0ff6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ViewEditProduct.vue?vue&type=template&id=d1ac0ff6& */ "./resources/js/components/ViewEditProduct.vue?vue&type=template&id=d1ac0ff6&");
-/* harmony import */ var _ViewEditProduct_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ViewEditProduct.vue?vue&type=script&lang=js& */ "./resources/js/components/ViewEditProduct.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _Edit_vue_vue_type_template_id_4205667c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=4205667c& */ "./resources/js/components/dashbord/products/Edit.vue?vue&type=template&id=4205667c&");
 /* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/components/dashbord/products/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
 
 
 /* normalize component */
+
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Edit_vue_vue_type_template_id_4205667c___WEBPACK_IMPORTED_MODULE_0__["render"],
@@ -68262,13 +68262,10 @@ component.options.__file = "resources/js/components/dashbord/products/Edit.vue"
 
 /***/ }),
 
-
 /***/ "./resources/js/components/dashbord/products/Edit.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/dashbord/products/Edit.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-  
-  
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -68304,8 +68301,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/khatabwedaa/Dev/git-fork/mhard-ecom/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/khatabwedaa/Dev/git-fork/mhard-ecom/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! E:\tasks\Marketing WebSite\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\tasks\Marketing WebSite\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
